@@ -1,0 +1,11 @@
+version: ^project.version^
+spring:
+  application:
+    name: sample
+  jmx:
+    enabled: true
+  jackson:
+    serialization.indent_output: true
+  devtools:
+    livereload.enabled: true
+

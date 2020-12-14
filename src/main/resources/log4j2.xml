@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60">
+
+    <Properties>
+        <Property name="LOG_AUDIT_PATH">logs</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Project-Appender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <Console name="Lib-Appender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="Lib-Appender"/>
+        </Logger>
+
+        <Logger name="fr.gboissinot" level="info" additivity="false">
+            <AppenderRef ref="Project-Appender"/>
+        </Logger>
+
+        <Root level="error">
+            <AppenderRef ref="Lib-Appender"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
