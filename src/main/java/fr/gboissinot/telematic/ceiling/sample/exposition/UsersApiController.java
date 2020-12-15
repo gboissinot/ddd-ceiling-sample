@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
-class UsersApiController implements UsersApi {
+class UsersApiController {
 
     private final CommandBus commandBus;
 
@@ -25,7 +25,6 @@ class UsersApiController implements UsersApi {
     }
 
     @PutMapping(path = "/{userId}/gauge", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @Override
     public ResponseEntity<Void> changeGaugeValue(@PathVariable long userId,
                                                  @RequestBody @Valid ModifyUserGaugeRequest modifyClientGaugeRequest) {
         ModifyUserGaugeCommand modifyUserGaugeCommand =
@@ -37,7 +36,6 @@ class UsersApiController implements UsersApi {
     }
 
     @DeleteMapping(path = "/{userId}/gauge", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @Override
     public ResponseEntity<Void> resetGaugeValue(@PathVariable long userId) {
         ResetUserGaugeCommand resetUserGaugeCommand = new ResetUserGaugeCommand(UserId.of(userId));
         commandBus.post(resetUserGaugeCommand);
